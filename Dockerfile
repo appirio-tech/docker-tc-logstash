@@ -26,6 +26,7 @@ RUN echo 'gem "logstash-input-dynamodb"' >> Gemfile
 RUN echo 'gem "logstash-filter-dynamodb"' >> Gemfile
 RUN echo 'gem "logstash-input-jdbc"' >> Gemfile
 RUN echo 'gem "logstash-filter-skills", :path => "/data/logstash-filter-skills/"' >> Gemfile
+RUN echo 'gem "logstash-filter-aggregate"' >> Gemfile
 # add more gems here...
 
 RUN jruby -S gem install bundler
