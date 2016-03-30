@@ -23,6 +23,7 @@ RUN curl --create-dirs -sS -o /opt/logstash/vendor/jruby/lib/ruby/.mvn/extension
 # dynamodb plugin
 WORKDIR /opt/logstash/
 RUN echo 'gem "logstash-filter-skills", :path => "/data/logstash-filter-skills/"' >> Gemfile
+RUN echo 'gem "logstash-filter-jdbc"' >> Gemfile
 RUN echo 'gem "logstash-filter-aggregate"' >> Gemfile
 # add more gems here...
 
