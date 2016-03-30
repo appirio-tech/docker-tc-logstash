@@ -33,8 +33,4 @@ RUN plugin install --no-verify
 RUN plugin list
 
 
-#COPY docker-entrypoint.sh /
-
-#ENTRYPOINT ["/docker-entrypoint.sh"]
-#CMD ["logstash", "agent"]
-
+WORKDIR /
