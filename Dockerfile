@@ -1,16 +1,9 @@
 FROM mantika/logstash-dynamodb-streams
 
-#FROM anapsix/alpine-java
-
-#COPY logstash-2.0.0-beta2.zip /data/
 COPY logstash-filter-skills.zip /data/
-COPY informix.jdbc-3.0.0.JC3.jar /data/
+COPY informix.jdbc-3.0.0.JC3.jar /
 
 # Python
-#RUN apk add --no-cache python curl && \
-#    apk add --no-cache --virtual=build-dependencies wget ca-certificates && \
-#    wget "https://bootstrap.pypa.io/get-pip.py" -O /dev/stdout | python && \
-#    apk del build-dependencies
 
 RUN apt-get update && apt-get install -y python2.7 && \
  wget "https://bootstrap.pypa.io/get-pip.py"
@@ -33,7 +26,7 @@ RUN echo 'gem "logstash-filter-skills", :path => "/data/logstash-filter-skills/"
 RUN echo 'gem "logstash-filter-aggregate"' >> Gemfile
 # add more gems here...
 
-WORKDIR /
+WORKDIR /data
 
 RUN plugin install --no-verify
 
