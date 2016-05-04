@@ -2,6 +2,7 @@ FROM mantika/logstash-dynamodb-streams
 
 COPY logstash-filter-skills.zip /data/
 COPY informix.jdbc-3.0.0.JC3.jar /
+COPY ifxjdbc.jar /
 
 # Python
 
