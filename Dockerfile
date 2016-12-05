@@ -1,4 +1,14 @@
-FROM mantika/logstash-dynamodb-streams
+FROM logstash:2.4.1
+
+
+# Make .m2 accessible to logstash user, otherwise logstash won't start
+RUN mkdir -p /var/lib/logstash/.m2
+RUN ln -s /var/lib/logstash/.m2 /root/.m2
+
+ENV PATH /opt/logstash/vendor/jruby/bin/:$PATH
+RUN gem install logstash-input-dynamodb:'> 2' logstash-filter-dynamodb:'> 2'
+RUN plugin install logstash-input-dynamodb logstash-filter-dynamodb
+
 
 ADD jar/jdbc /opt/logstash/vendor/
 
@@ -16,8 +26,6 @@ RUN /usr/bin/python2.7 get-pip.py
 # install jinja2 cli
 RUN pip install j2cli
 
-#RUN unzip /data/logstash-2.0.0-beta2.zip -d /opt/
-#RUN mv /opt/logstash-2.0.0-beta2 /opt/logstash
 RUN unzip /data/logstash-filter-skills.zip -d /data/
 
 ENV PATH /opt/logstash/bin:$PATH
